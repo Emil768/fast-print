@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import styles from "./App.module.scss";
+import { QuoteType } from "./@types";
+import { Quote } from "./Quote";
+import { getRandomQuote } from "./utils";
 
 function App() {
+  const [quote, setQuote] = useState<QuoteType>({ text: "", author: "" });
+
+  const onGetRandomQuotes = async () => {
+    const randomQuote = await getRandomQuote();
+    setQuote(randomQuote);
+  };
+
+  useEffect(() => {
+    onGetRandomQuotes();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <div>
+        <Quote {...quote} setQuote={setQuote} />
+      </div>
     </div>
   );
 }
