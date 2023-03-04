@@ -1,8 +1,30 @@
 .quote {
+  &__title {
+    margin-bottom: 20px;
+  }
   &__word {
-    margin-right: 20px;
+    line-height: 1.5;
     &-active {
       background-color: red;
+      color: #fff;
+    }
+  }
+  &__content {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+
+    margin-bottom: 40px;
+  }
+  &__letter {
+    letter-spacing: 0.1rem;
+    &-active {
+      background-color: #3184ff;
+      padding: 2px 10px;
       color: #fff;
     }
   }
