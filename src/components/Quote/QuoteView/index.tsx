@@ -1,4 +1,4 @@
-import { QuoteViewType } from "../../@types";
+import { QuoteViewType } from "../../../@types";
 import styles from "./styles.module.scss";
 
 export const QuoteView = ({

@@ -1,13 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import { QuoteType } from "../@types";
-import { getRandomQuote } from "../utils";
+import { QuoteBlockType } from "../../@types";
+import { getRandomQuote } from "../../utils";
+
 import { QuoteView } from "./QuoteView";
 
-interface QuoteBlock extends QuoteType {
-  setQuote: React.Dispatch<React.SetStateAction<QuoteType>>;
-}
-
-export const Quote = ({ text, author, setQuote }: QuoteBlock) => {
+export const Quote = ({
+  text,
+  author,
+  setQuote,
+  timePrint,
+  timeSpeed,
+}: QuoteBlockType) => {
   const [activeQuote, setActiveQuote] = useState(0);
   const [activeLetter, setActiveLetter] = useState(0);
   const [count, setCount] = useState({
@@ -16,7 +19,7 @@ export const Quote = ({ text, author, setQuote }: QuoteBlock) => {
     total: 1,
   });
   const [startPrint, setStartPrint] = useState(false);
-  const [counter, setCounter] = useState(60);
+  const [counter, setCounter] = useState(timePrint.default);
   const textRef = useRef<HTMLDivElement>(null);
   const textQuote = text.split(" ");
   const currentQuote = textQuote[activeQuote];
@@ -63,7 +66,7 @@ export const Quote = ({ text, author, setQuote }: QuoteBlock) => {
   useEffect(() => {
     if (startPrint) {
       const interval = setInterval(() => {
-        if (counter < 1) {
+        if (counter < timePrint.min) {
           setCounter(0);
           setCount((prev) => ({
             ...prev,
@@ -79,7 +82,7 @@ export const Quote = ({ text, author, setQuote }: QuoteBlock) => {
         clearInterval(interval);
       };
     }
-  }, [startPrint, counter]);
+  }, [startPrint, counter, timePrint]);
 
   useEffect(() => {
     if (textRef.current) {

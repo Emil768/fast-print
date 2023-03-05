@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import styles from "./App.module.scss";
 import { QuoteType } from "./@types";
-import { Quote } from "./Quote";
 import { getRandomQuote } from "./utils";
+import { Settings } from "./components/Settings";
+import { Quote } from "./components/Quote";
+import { Modal } from "./components/Modal";
 
 function App() {
   const [quote, setQuote] = useState<QuoteType>({ text: "", author: "" });
+  const [activeModal, setActiveModal] = useState(false);
+  const [timePrint, setTimePrint] = useState({
+    max: 70,
+    default: 60,
+    min: 10,
+  });
+  const [timeSpeed, setTimeSpeed] = useState("easy");
 
   const onGetRandomQuotes = async () => {
     const randomQuote = await getRandomQuote();
     setQuote(randomQuote);
   };
+
+  const onToggleModal = () => setActiveModal(!activeModal);
 
   useEffect(() => {
     onGetRandomQuotes();
@@ -19,8 +29,24 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <div>
-        <Quote {...quote} setQuote={setQuote} />
+      <div className={styles.app__content}>
+        <h3 className={styles.app__settings} onClick={onToggleModal}>
+          ⚙️
+        </h3>
+        <Modal active={activeModal}>
+          <Settings
+            timeSpeed={timeSpeed}
+            timePrint={timePrint}
+            setTimeSpeed={setTimeSpeed}
+            setTimePrint={setTimePrint}
+          />
+        </Modal>
+        <Quote
+          {...quote}
+          setQuote={setQuote}
+          timeSpeed={timeSpeed}
+          timePrint={timePrint}
+        />
       </div>
     </div>
   );

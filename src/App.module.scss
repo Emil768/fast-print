@@ -25,10 +25,38 @@ code {
     monospace;
 }
 
+ul {
+  list-style-type: none;
+}
 .app {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  position: relative;
+  &__content {
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  &__settings {
+    align-self: flex-end;
+    font-size: 30px;
+    z-index: 3;
+    &:hover {
+      cursor: pointer;
+      animation: rotating 2s linear infinite;
+    }
+  }
+
+  @keyframes rotating {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
 }

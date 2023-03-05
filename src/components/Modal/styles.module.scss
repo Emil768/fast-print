@@ -1,0 +1,28 @@
+.modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(28, 30, 34, 0.9);
+  display: none;
+  &-active {
+    display: flex;
+  }
+  &-active &__content {
+    transform: translateY(0);
+  }
+  &__content {
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    align-self: center;
+    color: #000;
+    transition: transform 0.3s linear;
+    transform: translateY(-100%);
+  }
+}
