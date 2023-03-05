@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { QuoteBlockType } from "../../@types";
+import { QuoteBlockType, SpeedIntervalType } from "../../@types";
 import { getRandomQuote } from "../../utils";
 
 import { QuoteView } from "./QuoteView";
@@ -10,6 +10,7 @@ export const Quote = ({
   setQuote,
   timePrint,
   timeSpeed,
+  focus,
 }: QuoteBlockType) => {
   const [activeQuote, setActiveQuote] = useState(0);
   const [activeLetter, setActiveLetter] = useState(0);
@@ -24,6 +25,11 @@ export const Quote = ({
   const textQuote = text.split(" ");
   const currentQuote = textQuote[activeQuote];
   const currentLetter = currentQuote.split("")[activeLetter];
+  const speedInterval: SpeedIntervalType = {
+    easy: 1500,
+    normal: 1000,
+    hard: 450,
+  };
 
   const onChangeText = async () => {
     if (textRef.current?.textContent) {
@@ -66,7 +72,7 @@ export const Quote = ({
   useEffect(() => {
     if (startPrint) {
       const interval = setInterval(() => {
-        if (counter < timePrint.min) {
+        if (counter < 1) {
           setCounter(0);
           setCount((prev) => ({
             ...prev,
@@ -76,19 +82,21 @@ export const Quote = ({
         } else {
           setCounter((prev) => prev - 1);
         }
-      }, 500);
+      }, speedInterval[timeSpeed]);
 
       return () => {
         clearInterval(interval);
       };
     }
-  }, [startPrint, counter, timePrint]);
+  }, [startPrint, counter, timePrint, timeSpeed]);
 
   useEffect(() => {
-    if (textRef.current) {
-      textRef.current.focus();
+    if (!focus) {
+      if (textRef.current) {
+        textRef.current.focus();
+      }
     }
-  }, [textRef]);
+  }, [textRef, focus]);
 
   return (
     <QuoteView

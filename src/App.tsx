@@ -8,20 +8,18 @@ import { Modal } from "./components/Modal";
 
 function App() {
   const [quote, setQuote] = useState<QuoteType>({ text: "", author: "" });
-  const [activeModal, setActiveModal] = useState(false);
+  const [modal, setModal] = useState(false);
   const [timePrint, setTimePrint] = useState({
-    max: 70,
+    max: 300,
     default: 60,
     min: 10,
   });
   const [timeSpeed, setTimeSpeed] = useState("easy");
-
   const onGetRandomQuotes = async () => {
     const randomQuote = await getRandomQuote();
     setQuote(randomQuote);
   };
-
-  const onToggleModal = () => setActiveModal(!activeModal);
+  const onToggleModal = () => setModal(!modal);
 
   useEffect(() => {
     onGetRandomQuotes();
@@ -33,7 +31,7 @@ function App() {
         <h3 className={styles.app__settings} onClick={onToggleModal}>
           ⚙️
         </h3>
-        <Modal active={activeModal}>
+        <Modal modal={modal} setModal={setModal}>
           <Settings
             timeSpeed={timeSpeed}
             timePrint={timePrint}
@@ -46,6 +44,7 @@ function App() {
           setQuote={setQuote}
           timeSpeed={timeSpeed}
           timePrint={timePrint}
+          focus={modal}
         />
       </div>
     </div>

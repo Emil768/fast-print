@@ -3,7 +3,7 @@ export type QuoteType = {
   author: string;
 };
 
-export type timeType = {
+export type TimeType = {
   timeSpeed: string;
   timePrint: {
     max: number;
@@ -26,21 +26,30 @@ export type QuoteViewType = {
   textRef: React.RefObject<HTMLDivElement>;
 };
 
+export type SpeedIntervalType = {
+  [key: string]: number;
+  easy: number;
+  normal: number;
+  hard: number;
+};
+
 export type QuoteBlockType = {
   setQuote: React.Dispatch<React.SetStateAction<QuoteType>>;
-} & timeType &
+  focus: boolean;
+} & TimeType &
   QuoteType;
 
 export type ModalType = {
   children: React.ReactNode;
-  active: boolean;
+  modal: boolean;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SettingsViewType = {
   onClickPlus: () => void;
   onClickMinus: () => void;
   onSelectSpeed: (speed: string) => void;
-} & timeType;
+} & TimeType;
 
 export type SettingsType = {
   setTimeSpeed: React.Dispatch<React.SetStateAction<string>>;
@@ -51,4 +60,4 @@ export type SettingsType = {
       min: number;
     }>
   >;
-} & timeType;
+} & TimeType;

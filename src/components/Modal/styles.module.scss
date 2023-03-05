@@ -1,20 +1,30 @@
 .modal {
-  position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 3;
-  display: flex;
+  position: absolute;
+  display: none;
   align-items: center;
   justify-content: center;
-  background-color: rgba(28, 30, 34, 0.9);
-  display: none;
+  z-index: 3;
+  &__overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(28, 30, 34, 0.9);
+    display: none;
+  }
   &-active {
     display: flex;
   }
   &-active &__content {
+    opacity: 1;
     transform: translateY(0);
   }
+  &-active &__overlay {
+    display: flex;
+  }
   &__content {
+    z-index: 4;
     width: 500px;
     height: 300px;
     padding: 20px;
@@ -24,5 +34,12 @@
     color: #000;
     transition: transform 0.3s linear;
     transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  &__close {
+    position: absolute;
+    z-index: 5;
+    right: 20px;
+    cursor: pointer;
   }
 }

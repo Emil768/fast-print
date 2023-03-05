@@ -12,7 +12,7 @@ export const Settings = ({
     if (timePrint.default < timePrint.max) {
       setTimePrint((prev) => ({
         ...prev,
-        default: (prev.default += 1),
+        default: (prev.default += 20),
       }));
     }
   };
@@ -21,7 +21,7 @@ export const Settings = ({
     if (timePrint.default > timePrint.min) {
       setTimePrint((prev) => ({
         ...prev,
-        default: (prev.default -= 1),
+        default: (prev.default -= 20),
       }));
     }
   };
