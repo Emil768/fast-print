@@ -3,6 +3,23 @@ export type QuoteType = {
   author: string;
 };
 
+export type CountType = {
+  max: number;
+  min: number;
+  total: number;
+};
+
+export type TotalCPMType = {
+  count: CountType;
+  time: number;
+};
+
+export type ResultsType = {
+  count: CountType;
+  totalCPM: number | string;
+  refreshPrint: () => void;
+};
+
 export type TimeType = {
   timeSpeed: string;
   timePrint: {
@@ -11,6 +28,7 @@ export type TimeType = {
     min: number;
   };
 };
+
 export type QuoteViewType = {
   textQuote: string[];
   activeQuote: number;
@@ -18,12 +36,10 @@ export type QuoteViewType = {
   author: string;
   onChangeText: () => void;
   counter: number;
-  count: {
-    max: number;
-    min: number;
-    total: number;
-  };
+  count: CountType;
   textRef: React.RefObject<HTMLDivElement>;
+  animateFlame: string;
+  animateTime: string;
 };
 
 export type SpeedIntervalType = {
@@ -43,6 +59,7 @@ export type ModalType = {
   children: React.ReactNode;
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  type: "default" | "private";
 };
 
 export type SettingsViewType = {
@@ -61,3 +78,13 @@ export type SettingsType = {
     }>
   >;
 } & TimeType;
+
+export type HomeViewType = {
+  quote: QuoteType;
+  modal: boolean;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onToggleModal: () => void;
+  setQuote: React.Dispatch<React.SetStateAction<QuoteType>>;
+  focus: boolean;
+} & SettingsType &
+  TimeType;

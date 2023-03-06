@@ -10,6 +10,8 @@ export const QuoteView = ({
   counter,
   count,
   textRef,
+  animateFlame,
+  animateTime,
 }: QuoteViewType) => (
   <div className={styles.quote}>
     <h1 className={styles.quote__title}>Quotes-app 💬</h1>
@@ -60,12 +62,39 @@ export const QuoteView = ({
       ></div>
       <div className={styles.quote__info}>
         <div className={styles["quote__info-streak"]}>
-          streak: {count.max} 🔥
+          streak: {count.max}
+          <span className={styles.quote__fire}>
+            <span
+              className={[
+                styles.quote__flame,
+                styles["quote__flame-base"],
+              ].join(" ")}
+            >
+              🔥
+            </span>
+            <span
+              className={[styles.quote__flame, styles[animateFlame]].join(" ")}
+            >
+              🔥
+            </span>
+            <span
+              className={[styles.quote__flame, styles[animateFlame]].join(" ")}
+            >
+              🔥
+            </span>
+            <span
+              className={[styles.quote__flame, styles[animateFlame]].join(" ")}
+            >
+              🔥
+            </span>
+          </span>
         </div>
-        <div className={styles["quote__info-time"]}>time: {counter} ⏱️</div>
-        {/* <div className={styles["quote__info-wpm"]}>
-          assage: {Math.floor(count.max + count.min / count.total)}
-        </div> */}
+        <div className={styles["quote__info-time"]}>
+          time: {counter}{" "}
+          <span className={[styles.quote__time, styles[animateTime]].join(" ")}>
+            ⏱️
+          </span>
+        </div>
       </div>
     </div>
   </div>

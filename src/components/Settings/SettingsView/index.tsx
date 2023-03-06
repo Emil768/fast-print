@@ -1,4 +1,4 @@
-import { SettingsType, SettingsViewType } from "../../../@types";
+import { SettingsViewType } from "../../../@types";
 import styles from "./styles.module.scss";
 
 export const SettingsView = ({

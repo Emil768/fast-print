@@ -1,6 +1,7 @@
 import { SettingsType } from "../../@types";
 import { SettingsView } from "./SettingsView";
-import styles from "./styles.module.scss";
+import boopSound from "../../sounds/boop.mp3";
+import useSound from "use-sound";
 
 export const Settings = ({
   timePrint,
@@ -8,6 +9,7 @@ export const Settings = ({
   setTimePrint,
   setTimeSpeed,
 }: SettingsType) => {
+  const [play] = useSound(boopSound);
   const onClickPlus = () => {
     if (timePrint.default < timePrint.max) {
       setTimePrint((prev) => ({
@@ -15,6 +17,7 @@ export const Settings = ({
         default: (prev.default += 20),
       }));
     }
+    play();
   };
 
   const onClickMinus = () => {
@@ -24,10 +27,12 @@ export const Settings = ({
         default: (prev.default -= 20),
       }));
     }
+    play();
   };
 
   const onSelectSpeed = (speed: string) => {
     setTimeSpeed(speed);
+    play();
   };
 
   return (

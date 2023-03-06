@@ -24,18 +24,29 @@
     &-plus,
     &-minus {
       font-size: 20px;
-      border: 1px solid #4895ef;
-      color: #4895ef;
+      background-image: linear-gradient(
+        to right,
+        #56ccf2 0%,
+        #2f80ed 51%,
+        #56ccf2 100%
+      );
+      color: #fff;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       display: block;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
       &:hover {
         cursor: pointer;
         color: #fff;
-        background-color: #4895ef;
+
+        background-position: right center;
       }
     }
+
     &-number {
       font-size: 25px;
       margin: 0 10px;
@@ -51,52 +62,79 @@
       }
     }
     &-easy {
-      border: 1px solid #79bf79;
+      border: 1px solid #56ab2f;
       &:hover {
         cursor: pointer;
-        background-color: #79bf79;
-        border-color: #79bf79;
+        background-image: linear-gradient(
+          to right,
+          #56ab2f 0%,
+          #a8e063 51%,
+          #56ab2f 100%
+        );
         color: #fff;
         animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         transform: translate3d(0, 0, 0);
       }
     }
     .easy-active {
-      background-color: #79bf79;
-      border-color: #79bf79;
+      background-image: linear-gradient(
+        to right,
+        #56ab2f 0%,
+        #a8e063 51%,
+        #56ab2f 100%
+      );
       color: #fff;
     }
+
     &-normal {
-      border: 1px solid #4895ef;
+      border: 1px solid #56ccf2;
       &:hover {
         cursor: pointer;
-        background-color: #4895ef;
-        border-color: #4895ef;
+        background-image: linear-gradient(
+          to right,
+          #56ccf2 0%,
+          #2f80ed 51%,
+          #56ccf2 100%
+        );
         color: #fff;
         animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         transform: translate3d(0, 0, 0);
       }
     }
     .normal-active {
-      background-color: #4895ef;
-      border-color: #4895ef;
+      background-image: linear-gradient(
+        to right,
+        #56ccf2 0%,
+        #2f80ed 51%,
+        #56ccf2 100%
+      );
       color: #fff;
     }
+
     &-hard {
-      border: 1px solid #c36a6e;
+      border: 1px solid #cb356b;
       &:hover {
         cursor: pointer;
-        background-color: #c36a6e;
-        border-color: #c36a6e;
+        background-image: linear-gradient(
+          to right,
+          #cb356b 0%,
+          #bd3f32 51%,
+          #cb356b 100%
+        );
         color: #fff;
         animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         transform: translate3d(0, 0, 0);
       }
     }
+
     .hard-active {
-      background-color: #c36a6e;
-      border-color: #c36a6e;
       color: #fff;
+      background-image: linear-gradient(
+        to right,
+        #cb356b 0%,
+        #bd3f32 51%,
+        #cb356b 100%
+      );
     }
     @keyframes shake {
       10%,

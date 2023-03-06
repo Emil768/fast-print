@@ -1,4 +1,6 @@
 .quote {
+  position: relative;
+
   &__title {
     margin-bottom: 20px;
   }
@@ -33,10 +35,11 @@
     margin-top: 20px;
     display: flex;
     justify-content: center;
-
     &-streak {
       font-size: 18px;
-      margin-right: 20px;
+
+      position: relative;
+      margin-right: 40px;
     }
     &-time {
       margin-right: 20px;
@@ -61,10 +64,98 @@
     height: 100%;
     width: 100%;
     opacity: 0;
-    z-index: 2;
+    z-index: 3;
   }
   &__author {
     text-align: right;
     font-size: 20px;
+  }
+  &__time {
+    display: inline-block;
+    &-animate {
+      animation-name: wave-animation;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      transform-origin: 70% 70%;
+    }
+  }
+
+  &__fire {
+    position: relative;
+  }
+
+  &__flame {
+    position: absolute;
+    left: 8px;
+    transform-origin: 70% 70%;
+    z-index: 2;
+    display: inline-block;
+
+    &-animate {
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+      animation-name: flame-animation;
+      opacity: 0;
+      z-index: 1;
+      transform: translate3d(0, 15px, 0) scale(0.75) rotate(0);
+      z-index: 1;
+      animation-timing-function: ease-in;
+      &:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+    }
+  }
+
+  @keyframes flame-animation {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.75) rotate(0) scale(1);
+    }
+    25% {
+      opacity: 0.35;
+      transform: translate3d(0, -10%, 0) scale(1) rotate(-3deg) scale(1.05);
+    }
+    50% {
+      opacity: 0.35;
+      transform: translate3d(0, -4%, 0) scale(1) rotate(3deg) scale(1.1);
+    }
+    75% {
+      opacity: 0.35;
+      transform: translate3d(0, -20%, 0) scale(1) rotate(-3deg) scale(1.05);
+    }
+    99% {
+      opacity: 0;
+      transform: translate3d(0, -50%, 0) scale(0.8) rotate(0) scale(1);
+    }
+  }
+  @keyframes wave-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
 }
