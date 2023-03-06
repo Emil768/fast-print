@@ -1,0 +1,28 @@
+.footer {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, 0);
+  &__content {
+    position: relative;
+  }
+  &__link {
+    fill: #fff;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &-telegram {
+      &:hover {
+        fill: #29b6f6;
+        opacity: 1;
+      }
+    }
+    &-github {
+      &:hover {
+        fill: #000;
+        opacity: 1;
+      }
+    }
+  }
+}
